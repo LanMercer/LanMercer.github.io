@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>如何搭建自己的 Hexo 博客</title>
+      <link href="/2026/06/19/how-to-build-hexo-blog/"/>
+      <url>/2026/06/19/how-to-build-hexo-blog/</url>
+      
+        <content type="html"><![CDATA[<h1 id="如何搭建自己的-Hexo-博客"><a href="#如何搭建自己的-Hexo-博客" class="headerlink" title="如何搭建自己的 Hexo 博客"></a>如何搭建自己的 Hexo 博客</h1><p>如果你也想拥有一个像我这样的个人博客，这篇文章会手把手教你从零开始搭建一个 Hexo 博客。</p><h2 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 Hexo？</h2><p>Hexo 是一个快速、简洁且高效的静态博客框架，使用 Markdown 写作，一键生成网页。它的优点是：</p><ul><li><strong>免费</strong> - 完全开源，不需要服务器费用</li><li><strong>简单</strong> - 只需要会写 Markdown 就能发布文章</li><li><strong>美观</strong> - 有大量免费主题可以选择</li><li><strong>可定制</strong> - 支持自定义主题和插件</li></ul><h2 id="搭建步骤概览"><a href="#搭建步骤概览" class="headerlink" title="搭建步骤概览"></a>搭建步骤概览</h2><h3 id="第一步：安装-Node-js"><a href="#第一步：安装-Node-js" class="headerlink" title="第一步：安装 Node.js"></a>第一步：安装 Node.js</h3><p>Hexo 基于 Node.js 运行，所以首先需要安装它。去 <a href="https://nodejs.org/">Node.js 官网</a> 下载安装包，选择 LTS（长期支持）版本即可。</p><h3 id="第二步：安装-Hexo"><a href="#第二步：安装-Hexo" class="headerlink" title="第二步：安装 Hexo"></a>第二步：安装 Hexo</h3><p>打开命令行，输入：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure><h3 id="第三步：创建博客项目"><a href="#第三步：创建博客项目" class="headerlink" title="第三步：创建博客项目"></a>第三步：创建博客项目</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init my-blog</span><br><span class="line">cd my-blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><h3 id="第四步：选择主题"><a href="#第四步：选择主题" class="headerlink" title="第四步：选择主题"></a>第四步：选择主题</h3><p>Hexo 有很多漂亮的主题。我使用的是 <strong>Butterfly</strong> 主题，安装方法：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-theme-butterfly</span><br></pre></td></tr></table></figure><h3 id="第五步：写文章"><a href="#第五步：写文章" class="headerlink" title="第五步：写文章"></a>第五步：写文章</h3><p>在 <code>source/_posts/</code> 目录下创建 <code>.md</code> 文件，用 Markdown 格式编写内容即可。</p><h3 id="第六步：预览和发布"><a href="#第六步：预览和发布" class="headerlink" title="第六步：预览和发布"></a>第六步：预览和发布</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo server    # 本地预览</span><br><span class="line">hexo generate  # 生成静态文件</span><br><span class="line">hexo deploy    # 部署到 GitHub Pages</span><br></pre></td></tr></table></figure><h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>搭建博客并不难，难的是坚持写下去。希望这篇简单的教程能帮到你，如果你有任何问题，欢迎在 GitHub 上给我留言！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> 建站 </tag>
+            
+            <tag> 新手教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我的游戏生涯记录站上线啦</title>
+      <link href="/2026/06/19/my-game-site-launch/"/>
+      <url>/2026/06/19/my-game-site-launch/</url>
+      
+        <content type="html"><![CDATA[<h1 id="欢迎来到我的博客！"><a href="#欢迎来到我的博客！" class="headerlink" title="欢迎来到我的博客！"></a>欢迎来到我的博客！</h1><p>经过一段时间的搭建和调试，我的个人博客终于上线了！</p><h2 id="这个博客是做什么的？"><a href="#这个博客是做什么的？" class="headerlink" title="这个博客是做什么的？"></a>这个博客是做什么的？</h2><p>这个博客主要用来记录两方面的内容：</p><ol><li><strong>游戏生涯记录</strong> - 我玩过的每一款游戏，从单机到联机，从入门到精通</li><li><strong>技术探索笔记</strong> - 在折腾网站、工具过程中学到的一些小技巧</li></ol><h2 id="游戏记录站"><a href="#游戏记录站" class="headerlink" title="游戏记录站"></a>游戏记录站</h2><p>我已经建立了一个专门的游戏生涯记录页面，用时间线的形式展示我从入坑到现在玩过的所有游戏。包括：</p><ul><li>单机游戏和联机游戏的双轨展示</li><li>每个游戏的游玩时间段和简短评价</li><li>游戏截图和成就记录</li></ul><p>你可以在导航栏点击「游戏」查看完整记录。</p><h2 id="关于博主"><a href="#关于博主" class="headerlink" title="关于博主"></a>关于博主</h2><p>我是 LanMercer，一个热爱游戏和技术的玩家。希望通过这个博客记录自己的游戏历程，也分享一些有用的技术经验。</p><p>如果你也对游戏感兴趣，欢迎常来看看！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 公告 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 游戏记录 </tag>
+            
+            <tag> 网站公告 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

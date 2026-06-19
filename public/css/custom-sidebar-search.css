@@ -1,0 +1,33 @@
+.card-widget.card-search {
+  padding: 1rem;
+}
+
+.card-search-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #c8dcc8;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.card-search-input:focus {
+  border-color: #4caf50;
+}
+
+.card-search-btn {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.card-search-btn:hover {
+  background: #43a047;
+}

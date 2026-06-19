@@ -1,0 +1,83 @@
+# Butterfly 主题配置
+
+# 主题色 - 浅绿色系
+theme_color:
+  enable: true
+  main: "#66BB6A"
+  paginator: "#81C784"
+  button_hover: "#A5D6A7"
+
+# 首页头部背景图
+index_img: /images/banner.jpg
+
+# 导航菜单
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  游戏: http://localhost:4001/ || fas fa-gamepad
+  搜索: /search/ || fas fa-search
+  关于: /about/ || fas fa-user
+
+menu_settings:
+  icon: false
+  text: true
+
+# 搜索 - 关闭顶部搜索图标，改用侧边栏搜索卡片
+search:
+  enable: false
+
+# 代码高亮
+highlight_theme: default
+highlight_copy: true
+highlight_lang: true
+highlight_shrink: true
+
+# 社交链接
+social:
+  fab fa-github: https://github.com/LanMercer || Github
+
+# 页脚
+footer:
+  owner:
+    enable: true
+    since: 2024
+  custom_text: 用 ❤️ 记录每一次冒险
+
+# 注入自定义代码
+inject:
+  head:
+    - <script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a[href="http://localhost:4001/"]').forEach(function(a){a.removeAttribute('target');a.removeAttribute('rel')})})</script>
+    - <style>.site-data a[href="/categories/"]{display:none}</style>
+    - <link rel="stylesheet" href="/css/custom-sidebar-search.css">
+    - <script src="/js/custom-sidebar-search.js"></script>
+
+# 文章元信息
+post_meta:
+  page:
+    date_type: both
+    date_format: relative
+    categories: true
+    tags: true
+    wordcount: false
+
+# TOC
+toc:
+  post: true
+  page: false
+  number: true
+  expand: true
+
+# 侧边栏
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  card_author: true
+  card_announcement: true
+  card_recent_post: true
+  card_categories: false
+  card_tags: true
+  card_archives: true
+  card_webinfo: true
