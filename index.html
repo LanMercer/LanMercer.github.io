@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LanMercer 的博客 - 记录生活与游戏</title><meta name="author" content="LanMercer"><meta name="copyright" content="LanMercer"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一个关于游戏、技术与生活的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LanMercer 的博客">
+<meta property="og:url" content="https://lanmercer.github.io/index.html">
+<meta property="og:site_name" content="LanMercer 的博客">
+<meta property="og:description" content="一个关于游戏、技术与生活的个人博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lanmercer.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="LanMercer">
+<meta property="article:tag" content="博客,游戏,技术,生活">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lanmercer.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LanMercer 的博客",
+  "alternateName": [
+    "记录生活与游戏",
+    "lanmercer.github.io"
+  ],
+  "url": "https://lanmercer.github.io/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lanmercer.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LanMercer 的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a[href="http://localhost:4001/"]').forEach(function(a){a.removeAttribute('target');a.removeAttribute('rel')})})</script><style>.site-data a[href="/categories/"]{display:none}</style><link rel="stylesheet" href="/css/custom-sidebar-search.css"><script src="/js/custom-sidebar-search.js"></script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="https://lanmercer.github.io/game/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/images/banner.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">LanMercer 的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="https://lanmercer.github.io/game/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">LanMercer 的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/LanMercer" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/06/25/abcd-obsidian-cursor-report/" title="ABCD知识循环与Obsidian+Cursor实践学习报告">ABCD知识循环与Obsidian+Cursor实践学习报告</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-25T02:00:00.000Z" title="发表于 2026-06-25 10:00:00">2026-06-25</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-25T10:16:54.964Z" title="更新于 2026-06-25 18:16:54">2026-06-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">实践总结</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Obsidian/">Obsidian</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Cursor/">Cursor</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/">知识库</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/ABCD%E7%9F%A5%E8%AF%86%E5%BE%AA%E7%8E%AF/">ABCD知识循环</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Markdown/">Markdown</a></span></div><div class="content">ABCD知识循环与Obsidian+Cursor实践学习报告作者： LanMercer实践周期： 2日实践项目： ABCD知识循环与Obsidian+Cursor实践相关AI： cursor，deepseek-v4-flash，qwen3.7网页端一、学习背景与目标1. 背景 过去习惯使用文本文档（.txt）存储资料，但缺乏结构化管理和关联性。 转向使用 Obsidian 作为知识管理工具，结合 Markdown（.md）格式提升效率。 探索 ABCD 知识循环（Acquire-Break down-Curate-Do）与 Cursor 的集成应用。  2. 目标 掌握 Obsidian 的基础操作。 实现从 .txt 到 .md 的平滑迁移。 通过 Cursor 自动化处理流程，构建可关联的 ABCD 知识库。   二、核心学习内容与实操记录1. 环境搭建与基础配置Obsidian 安装与仓库创建 下载 Obsidian 并安装（官网：obsidian.md&#x2F;download）。 新建本地仓库（例如：My-Knowledge-Vault），选择空文件夹作为根目录。  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/06/24/dify-first-try/" title="Python编程刷题引导Agent：第一次部署Dify并搭建工作流全记录">Python编程刷题引导Agent：第一次部署Dify并搭建工作流全记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-24T06:00:00.000Z" title="发表于 2026-06-24 14:00:00">2026-06-24</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-24T07:43:12.063Z" title="更新于 2026-06-24 15:43:12">2026-06-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">实践总结</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/AI/">AI</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/dify/">dify</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/">工作流</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%96%B0%E6%89%8B/">新手</a></span></div><div class="content">Python编程刷题引导Agent：第一次部署Dify并搭建工作流全记录实践人： LanMercer实践周期： 3日实践项目： Python编程刷题引导Agent（Dify工作流）相关AI： deepseek网页端快速模式，qwen3.7网页端  一、实践成果回顾在环境部署阶段，我在本地通过 Docker 成功部署了 Dify，过程中解决了镜像拉取时的速率限制问题。随后在 Dify 中配置了 DeepSeek 模型供应商，理解了 V4 系列各版本的定位差异，包括 Flash、Pro、Coder 和 Reasoner 各自的适用场景。 在工作流搭建方面，我完成了从“题目解读”到“收集思路”再到“思路优化”，之后通过循环确认用户是否理解，最后进入“代码教学”和“最终代码展示”的完整流程。整个工作流包含了 LLM 节点、人工介入节点和条件分支节点的综合运用。 在部署与迁移方面，我通过 DSL 文件完成了从本地到云端的导出和导入，实现了工作流的跨环境迁移。同时理解了云端账号与工作空间的机制，实现了多设备协同使用。  二、四个核心认知升级第一个认知升级：AI 应用不等于聊天框，编排比提示词...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/06/19/my-game-site-launch/" title="游戏生涯记录站">游戏生涯记录站</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-19T09:00:00.000Z" title="发表于 2026-06-19 17:00:00">2026-06-19</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-19T10:24:09.124Z" title="更新于 2026-06-19 18:24:09">2026-06-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/AI/">AI</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%B0%E5%BD%95/">记录</a></span></div><div class="content">欢迎来到我的游戏生涯记录站！在AI的帮助下，我的游戏生涯记录站终于完成啦！ 这个记录站是做什么的？这个博客主要用来记录两方面的内容：  游戏生涯记录 - 从单机与联机两个不同的维度记录我玩过的每一款游戏。 技术探索笔记 - 完成网站过程的主要工作。  游戏生涯记录我已经建立了一个专门的游戏生涯记录页面，用时间线的形式展示我从入坑到现在玩过的所有游戏。包括：  单机游戏和联机游戏的双轨展示 每个游戏的游玩时间和简短思绪 游戏截图  你可以在导航栏点击「游戏」查看完整记录。 技术探索笔记AI参与了从最初的构想到最后的完成全过程。大体上可以分为架构，实施与答疑三个类型。  架构 - 通过Gemini3.5 Flash网页版，提出自己对于网站的最初构想，并且通过提示词对细节进行不断完善。最初提示词如下：你是一个提示词优化专家，从我的初始需求开始反复问问题，直到90%理解然后生成一个完美的提示词输出后问我是否满意，如果不满意则迭代改进初始需求。现在我的初始需求是，我需要做一个网站，来记录我的游戏生涯。 实施 - 将已有的提示词输入Trae，并且选择好需要工作的文件夹。 答疑 - 通过豆包手...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/06/19/how-to-build-hexo-blog/" title="第一次搭建博客，Hello world!">第一次搭建博客，Hello world!</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-19T06:00:00.000Z" title="发表于 2026-06-19 14:00:00">2026-06-19</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-24T07:47:02.981Z" title="更新于 2026-06-24 15:47:02">2026-06-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/AI/">AI</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%96%B0%E6%89%8B/">新手</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Hexo/">Hexo</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a></span></div><div class="content">2026.6.19 第一次搭建 Hexo 博客我是LanMercer，你可以称呼我为Lan。超级感谢AI时代，让我在AI的帮助下搭建了自己的 Hexo 博客。 相关AIAI参与了从最初的构想到最后的完成全过程。大体上可以分为架构，实施与答疑三个类型。  架构 - 通过Gemini3.5 Flash网页版与Qwen3.7网页版，提出自己对于网站的最初构想，并且通过提示词对细节进行不断完善。最初提示词如下：你是一个提示词优化专家，从我的初始需求开始反复问问题，直到90%理解然后生成一个完美的提示词输出后问我是否满意，如果不满意则迭代改进初始需求。现在我的初始需求如下。 实施 - 将已有的提示词输入Trae，并且选择好需要工作的文件夹。 答疑 - 通过豆包手机版，Deepseek快速模式网页版，Qwen3.7网页版对过程中的所有疑惑与发散性思维进行解答。  为什么选择 Hexo？Hexo 是一个快速、简洁且高效的静态博客框架，使用 Markdown 写作，一键生成网页。它的优点是：  免费 - 完全开源，不需要服务器费用 简单 - 只需要会写 Markdown 就能发布文章 美观 - ...</div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2024 - 2026 By LanMercer</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5</a></span></div><div class="footer_custom_text">用 ❤️ 记录每一次冒险</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5"></script><script src="/js/main.js?v=5.5.5"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
