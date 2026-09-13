@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>大模型算法项目成果与AI辅助制作方案：从本地部署到机器人领域RAG | LanMercer 的博客</title><meta name="author" content="LanMercer"><meta name="copyright" content="LanMercer"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在6GB显存笔记本上跑通Qwen本地部署、提示词工程、RAG与QLoRA微调，记录机器人领域问答系统的真实评测结果，以及按天推进、实测验收的AI协作方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大模型算法项目成果与AI辅助制作方案：从本地部署到机器人领域RAG">
+<meta property="og:url" content="https://lanmercer.github.io/2026/09/13/llm-rag-project-ai-workflow/index.html">
+<meta property="og:site_name" content="LanMercer 的博客">
+<meta property="og:description" content="在6GB显存笔记本上跑通Qwen本地部署、提示词工程、RAG与QLoRA微调，记录机器人领域问答系统的真实评测结果，以及按天推进、实测验收的AI协作方案。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lanmercer.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-13T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-13T01:14:16.021Z">
+<meta property="article:author" content="LanMercer">
+<meta property="article:tag" content="大模型算法">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="QLoRA">
+<meta property="article:tag" content="AI辅助开发">
+<meta property="article:tag" content="Qwen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lanmercer.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "大模型算法项目成果与AI辅助制作方案：从本地部署到机器人领域RAG",
+  "url": "https://lanmercer.github.io/2026/09/13/llm-rag-project-ai-workflow/",
+  "image": "https://lanmercer.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-09-13T02:00:00.000Z",
+  "dateModified": "2026-09-13T01:14:16.021Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "LanMercer",
+      "url": "https://lanmercer.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lanmercer.github.io/2026/09/13/llm-rag-project-ai-workflow/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大模型算法项目成果与AI辅助制作方案：从本地部署到机器人领域RAG',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a[href="http://localhost:4001/"]').forEach(function(a){a.removeAttribute('target');a.removeAttribute('rel')})})</script><style>.site-data a[href="/categories/"]{display:none}</style><link rel="stylesheet" href="/css/custom-sidebar-search.css"><script src="/js/custom-sidebar-search.js"></script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="https://lanmercer.github.io/game/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">LanMercer 的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">大模型算法项目成果与AI辅助制作方案：从本地部署到机器人领域RAG</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="https://lanmercer.github.io/game/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/search/"><i class="fa-fw fas fa-search"></i><span> 搜索</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">大模型算法项目成果与AI辅助制作方案：从本地部署到机器人领域RAG</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-13T02:00:00.000Z" title="发表于 2026-09-13 10:00:00">2026-09-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-13T01:14:16.021Z" title="更新于 2026-09-13 09:14:16">2026-09-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">实践总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="大模型算法项目成果与AI辅助制作方案"><a href="#大模型算法项目成果与AI辅助制作方案" class="headerlink" title="大模型算法项目成果与AI辅助制作方案"></a>大模型算法项目成果与AI辅助制作方案</h1><p><strong>作者：</strong> LanMercer<br><strong>实践周期：</strong> 2026年8月起，MVP于9月3日完成归档<br><strong>实践项目：</strong> 机器人行业垂直领域RAG问答系统<br><strong>硬件环境：</strong> NVIDIA RTX 3060 Laptop，6GB显存<br><strong>AI协作方式：</strong> 对话助手制定教程与解释原理，代码助手协助实现与排错，本人学习、运行、修改并验收</p>
+<hr>
+<h2 id="一、项目背景与目标"><a href="#一、项目背景与目标" class="headerlink" title="一、项目背景与目标"></a>一、项目背景与目标</h2><p>这次实践从大模型基础学习出发，逐步把本地部署、提示词工程、接口服务、文档检索和参数高效微调整合成一个可以演示、可以评测、有完整文档的项目。</p>
+<p>RAG（检索增强生成）是先从资料里找到相关内容，再让模型依据这些内容回答。我的目标是围绕机器人领域PDF建立知识库，让回答能够追溯到资料，同时在资料没有答案时明确说明，而不是编造结论。</p>
+<p>项目选用Qwen2.5-3B-Instruct作为生成模型。QLoRA是将量化后的模型底座与少量可训练参数结合的微调方法，使有限显存也能进行训练；LoRA adapter是保存这些增量参数的适配器。项目同时保留原模型和微调模型，便于观察两条链路的差异。</p>
+<p>数学背景也贯穿了学习过程：用概率分布理解softmax，用加权平均理解注意力，用余弦相似度理解检索，用低秩近似理解LoRA。类比帮助入门，最终结论仍以公式、代码和实测结果为依据。</p>
+<hr>
+<h2 id="二、项目成果与核心产出"><a href="#二、项目成果与核心产出" class="headerlink" title="二、项目成果与核心产出"></a>二、项目成果与核心产出</h2><h3 id="1-从原理到工程的学习成果"><a href="#1-从原理到工程的学习成果" class="headerlink" title="1. 从原理到工程的学习成果"></a>1. 从原理到工程的学习成果</h3><ul>
+<li><strong>Transformer原理验证：</strong> 手写多头注意力与官方实现对比，最大误差约为5e-07；序列倒序训练示例的测试结果为10&#x2F;10。这些是教学实验结果，不代表通用任务能力。</li>
+<li><strong>本地模型部署：</strong> Qwen2.5-3B-Instruct采用4bit量化加载，记录的模型显存占用约1.92GB，在6GB显存设备上跑通推理。该数值是当时的模型加载记录，不是训练峰值显存。</li>
+<li><strong>提示词工程：</strong> 完成20个模板、5大分类，覆盖通用助手、文本处理、结构化抽取、推理问答和代码任务；通过实测迭代角色、输入、输出格式与约束。</li>
+<li><strong>接口服务：</strong> 使用FastAPI（用于编写HTTP接口的Python框架）提供兼容的聊天接口，完成curl、Python requests和LangChain三种调用方式验证。LangChain用于组合模型调用与检索等处理步骤。</li>
+<li><strong>文档问答：</strong> 跑通PDF加载、切块、向量化、建库、检索和生成完整流程；早期demo中3条论文问题回答正确，并记录了资料外问题的拒答样例。</li>
+<li><strong>微调产物：</strong> 准备300条机器人行业SFT数据。SFT是用输入和期望回答进行监督训练；数据覆盖6类任务，记录为无重复。QLoRA训练参数为14,966,784，占约3.10B总参数的0.4827%，适配器约20～30MB。</li>
+</ul>
+<h3 id="2-最终MVP实现了什么"><a href="#2-最终MVP实现了什么" class="headerlink" title="2. 最终MVP实现了什么"></a>2. 最终MVP实现了什么</h3><p>MVP是能验证核心流程的最小可用版本。当前项目完成了领域文档建库、问答入口、原模型与微调模型切换、20题评测以及配套文档。</p>
+<p>知识库使用GMR机器人论文，9页文档切成约105个片段。Embedding是把文本转换为可比较向量的模型，此处使用bge-small-zh-v1.5；Chroma是存放向量和文本的数据库，用于检索相关片段。</p>
+<p><strong>完整数据流：</strong> 用户问题 → 问题向量化 → 召回相关片段 → 拼接资料与提示词 → 模型生成 → 返回答案与引用。</p>
+<p>项目分为四层：检索层负责找资料，答案组织层负责拼接上下文和约束，适配器负责调整回答风格，生成层负责输出回答。分层的意义是出错后可以逐层定位。</p>
+<p><img src="/images/llm-rag-project/architecture.png" alt="机器人领域RAG项目架构图"></p>
+<p>整合入口为<code>第三周/day15/ask.py</code>与<code>config.json</code>，支持<code>--profile original</code>和<code>--profile lora</code>。切换客户端配置时，还需启动对应模型服务；在6GB显存设备上，两种模型服务按需分别运行。</p>
+<h3 id="3-配套交付文件"><a href="#3-配套交付文件" class="headerlink" title="3. 配套交付文件"></a>3. 配套交付文件</h3><ul>
+<li>建库脚本、原模型接口、微调模型接口与配置化问答入口。</li>
+<li>300条SFT数据、训练脚本和微调前后对比记录。</li>
+<li>20条评测题、<code>eval.py</code>评测脚本、逐题结果和人工复核记录。</li>
+<li>项目README、效果评估报告、双链路冒烟测试记录、架构图与面试四问。</li>
+<li>按日保存的教程和工作汇报，以及每周的工作、概念和算法题汇总。</li>
+</ul>
+<hr>
+<h2 id="三、真实评测结果与当前局限"><a href="#三、真实评测结果与当前局限" class="headerlink" title="三、真实评测结果与当前局限"></a>三、真实评测结果与当前局限</h2><h3 id="1-先明确评测口径"><a href="#1-先明确评测口径" class="headerlink" title="1. 先明确评测口径"></a>1. 先明确评测口径</h3><p>首版评测针对微调模型链路，配置为Top-K&#x3D;4（每次取4个相关片段）、temperature&#x3D;0.2，知识库为GMR论文。20题中，10题在资料内有答案，另外10题为资料外或反事实问题。</p>
+<p>自动判分使用关键词与拒答词规则，之后逐题人工复核；Q9、Q18的误判已修正。以下数据来自Day14最终评测及Day15效果评估报告，并非本次撰文重新运行模型得到的结果。</p>
+<h3 id="2-首版基线"><a href="#2-首版基线" class="headerlink" title="2. 首版基线"></a>2. 首版基线</h3><ul>
+<li><strong>检索命中率：2&#x2F;10，20%。</strong> 按标准答案段落是否被召回判定。</li>
+<li><strong>资料内生成正确率：2&#x2F;10，20%。</strong> 根据期望关键词并经人工复核判定。</li>
+<li><strong>资料外防幻觉正确率：6&#x2F;10，60%。</strong> 观察模型是否正确拒答。</li>
+<li><strong>总正确率：8&#x2F;20，40%。</strong> 对应这组两类各半的评测题。</li>
+<li><strong>防幻觉F1：0.667。</strong> F1是综合精确率与召回率的指标，此处精确率0.75、召回率0.60。</li>
+</ul>
+<p>早期demo的“3问全对”与最终20题评测使用不同的问题集合，不能混为同一个准确率。首版低分最有价值的地方，是暴露了检索召回不足和生成错误。</p>
+<h3 id="3-双链路观察"><a href="#3-双链路观察" class="headerlink" title="3. 双链路观察"></a>3. 双链路观察</h3><p>原模型与微调模型都完成了问答冒烟测试，也都有正确拒答样例。微调模型回答趋向简短、结论式；原模型往往更展开，引用格式更贴合模板。</p>
+<p>例如，问论文实验使用哪个数据集时，一次冒烟测试中原模型答出LAFAN1，微调模型未点名；而此前评测中微调模型在同题答对。这个差异说明单次生成会波动，也说明风格变化不能直接当作事实准确率提升。</p>
+<p>目前还没有完成原模型与微调模型在同一完整评测集上的量化对比，因此不写“微调提升了多少准确率”。</p>
+<h3 id="4-需要继续解决的问题"><a href="#4-需要继续解决的问题" class="headerlink" title="4. 需要继续解决的问题"></a>4. 需要继续解决的问题</h3><p>检索层按首版标准有8&#x2F;10题未命中答案段落，但精确段落匹配也可能漏记其他有效片段。后续需要同时观察标准段落命中与上下文是否包含答案证据。</p>
+<p>20题的样本量较小，关键词规则不能完整判断事实正确性，单次生成也有随机性。当前结果用于建立项目基线，不直接推断真实用户场景的表现。</p>
+<hr>
+<h2 id="四、项目的AI辅助制作方案"><a href="#四、项目的AI辅助制作方案" class="headerlink" title="四、项目的AI辅助制作方案"></a>四、项目的AI辅助制作方案</h2><h3 id="1-已采用的协作节奏"><a href="#1-已采用的协作节奏" class="headerlink" title="1. 已采用的协作节奏"></a>1. 已采用的协作节奏</h3><p>实际工作按“我下达每日任务 → AI阅读总纲与周计划 → 生成详细教程和脚本 → 我学习并运行修改 → 根据真实结果生成工作汇报 → Git归档”推进。Git是保存文件版本和修改历史的工具。</p>
+<p>每个学习日的教程、代码、笔记、截图和报告集中放入对应<code>dayX</code>目录。每周学习五天，再用休息与复盘时间生成周工作报告、概念笔记汇总和算法题答案汇总。这种组织方式让每一项成果都能回到当时的代码和记录。</p>
+<h3 id="2-任务拆分与验收"><a href="#2-任务拆分与验收" class="headerlink" title="2. 任务拆分与验收"></a>2. 任务拆分与验收</h3><ol>
+<li><strong>确定约束。</strong> 把6GB显存、机器人领域PDF、模型选择、目录位置和当天目标交给AI，要求先给可运行的最小步骤。</li>
+<li><strong>生成教程。</strong> 要求包含目标、名词解释、逐步命令、预期输出、常见报错和验收清单。带训练或测试的脚本在文件头说明模型、数据、损失函数、优化器以及测试内容。</li>
+<li><strong>本人执行。</strong> 阅读关键代码、运行命令，把实际日志交给AI分析。预期输出只是待验证目标，运行后再回填实测值。</li>
+<li><strong>定位问题。</strong> 检索错误先查召回片段，格式错误查提示词，风格问题查训练数据，接口错误查配置与服务身份，每轮只处理明确问题。</li>
+<li><strong>固定评测。</strong> 使用同一题集记录配置、结果与失败案例；自动判断后人工复核，保留修改口径。</li>
+<li><strong>整理交付。</strong> AI依据实际日志编写README、日报与周报，本人核对数字和完成状态后归档。模型权重、向量库与适配器权重按项目规则排除在Git之外。</li>
+</ol>
+<h3 id="3-可复用的每日任务提示词"><a href="#3-可复用的每日任务提示词" class="headerlink" title="3. 可复用的每日任务提示词"></a>3. 可复用的每日任务提示词</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">请阅读项目总纲和本周计划，在指定的dayX目录完成今天的任务。</span><br><span class="line">目标：完成一个可运行、可验证的最小功能。</span><br><span class="line">约束：Windows、RTX 3060 Laptop、6GB显存；沿用项目已有模型与目录。</span><br><span class="line">输出：详细教程、必要脚本、名词解释、命令说明和验收清单。</span><br><span class="line">脚本头部说明模型、数据、损失函数、优化器、训练和测试分别做什么。</span><br><span class="line">先核对已有文件，再提出修改；依据我提供的实际日志排错。</span><br><span class="line">没有运行的结果标为待验证，不编写成功日志或性能提升数字。</span><br><span class="line">当天完成后按已有格式整理工作汇报，区分已完成、进行中和未开始。</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-可复用的调优提示词"><a href="#4-可复用的调优提示词" class="headerlink" title="4. 可复用的调优提示词"></a>4. 可复用的调优提示词</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">请先读取首版评测表、eval.py和失败案例，说明当前评测口径。</span><br><span class="line">本轮只改变一个因素，例如Top-K，保留其他配置与题集。</span><br><span class="line">记录实验配置、召回片段、逐题答案、自动判分和人工复核。</span><br><span class="line">比较检索、生成、拒答指标，说明新增改善和退化案例。</span><br><span class="line">如果没有实际重跑，输出实验方案，不能声称指标已提升。</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-AI与本人的分工"><a href="#5-AI与本人的分工" class="headerlink" title="5. AI与本人的分工"></a>5. AI与本人的分工</h3><p>AI辅助制定学习步骤、起草代码、解释报错和整理记录；本人负责目标选择、数据核对、实际运行、关键代码理解与最终验收。计算交给代码，事实判断回到资料，成果数字回到日志。</p>
+<hr>
+<h2 id="五、后续优化路线"><a href="#五、后续优化路线" class="headerlink" title="五、后续优化路线"></a>五、后续优化路线</h2><p>以下是第四周计划中的待验证方案，目前没有新的评测结果可作为完成依据。</p>
+<h3 id="1-优先改善检索"><a href="#1-优先改善检索" class="headerlink" title="1. 优先改善检索"></a>1. 优先改善检索</h3><p>在固定题集下对比Top-K&#x3D;4与8，再分别比较切块长度500与800。补充有效证据召回口径，检查英文论文与中文向量模型的适配问题，逐次保存实验结果。</p>
+<h3 id="2-改善生成与引用"><a href="#2-改善生成与引用" class="headerlink" title="2. 改善生成与引用"></a>2. 改善生成与引用</h3><p>检查温度和模板约束，重点处理“有资料却拒答”“没有资料却拼凑回答”和引用格式偏离问题。关键问题进行多次生成，避免凭单次回答下结论。</p>
+<h3 id="3-补齐微调对照"><a href="#3-补齐微调对照" class="headerlink" title="3. 补齐微调对照"></a>3. 补齐微调对照</h3><p>在相同题集、检索配置和提示词下，对原模型与微调模型分别评测事实正确性、拒答表现和风格。后续再考虑Rerank（对召回片段重新排序）与混合检索（结合关键词检索和向量检索）。</p>
+<p>计划中的检索命中率≥40%、生成正确率≥40%等数值是优化目标，实际完成后再更新成果。</p>
+<hr>
+<h2 id="六、实践体会与资料依据"><a href="#六、实践体会与资料依据" class="headerlink" title="六、实践体会与资料依据"></a>六、实践体会与资料依据</h2><p>这次项目的收获，是把原理学习、代码实现、真实评测和文档归档连成一条可追溯的链路。AI帮助拆分任务与整理信息，实测与复核帮助我发现“能运行”之后还有哪些问题需要解决。</p>
+<p>本文依据本地项目中的《我的总工作流程》《大模型算法学习成果汇报》、Day15项目README与效果评估报告、双链路测试记录，以及第四周项目总结与优化路线图整理。较早汇报中的进度描述有部分未同步，本文完成状态以Day15验收材料为准；第四周内容按后续计划呈现。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://lanmercer.github.io">LanMercer</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://lanmercer.github.io/2026/09/13/llm-rag-project-ai-workflow/">https://lanmercer.github.io/2026/09/13/llm-rag-project-ai-workflow/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://lanmercer.github.io" target="_blank">LanMercer 的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95/">大模型算法</a><a class="post-meta__tags" href="/tags/RAG/">RAG</a><a class="post-meta__tags" href="/tags/QLoRA/">QLoRA</a><a class="post-meta__tags" href="/tags/AI%E8%BE%85%E5%8A%A9%E5%BC%80%E5%8F%91/">AI辅助开发</a><a class="post-meta__tags" href="/tags/Qwen/">Qwen</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/06/25/abcd-obsidian-cursor-report/" title="ABCD知识循环与Obsidian+Cursor实践学习报告"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">ABCD知识循环与Obsidian+Cursor实践学习报告</div></div><div class="info-2"><div class="info-item-1">ABCD知识循环与Obsidian+Cursor实践学习报告作者： LanMercer实践周期： 2日实践项目： ABCD知识循环与Obsidian+Cursor实践相关AI： cursor，deepseek-v4-flash，qwen3.7网页端一、学习背景与目标1. 背景 过去习惯使用文本文档（.txt）存储资料，但缺乏结构化管理和关联性。 转向使用 Obsidian 作为知识管理工具，结合 Markdown（.md）格式提升效率。 探索 ABCD 知识循环（Acquire-Break down-Curate-Do）与 Cursor 的集成应用。  2. 目标 掌握 Obsidian 的基础操作。 实现从 .txt 到 .md 的平滑迁移。 通过 Cursor 自动化处理流程，构建可关联的 ABCD 知识库。   二、核心学习内容与实操记录1. 环境搭建与基础配置Obsidian 安装与仓库创建 下载 Obsidian 并安装（官网：obsidian.md&#x2F;download）。 新建本地仓库（例如：My-Knowledge-Vault），选择空文件夹作为根目录。  ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C%E4%B8%8EAI%E8%BE%85%E5%8A%A9%E5%88%B6%E4%BD%9C%E6%96%B9%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">大模型算法项目成果与AI辅助制作方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF%E4%B8%8E%E7%9B%AE%E6%A0%87"><span class="toc-number">1.1.</span> <span class="toc-text">一、项目背景与目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C%E4%B8%8E%E6%A0%B8%E5%BF%83%E4%BA%A7%E5%87%BA"><span class="toc-number">1.2.</span> <span class="toc-text">二、项目成果与核心产出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%88%90%E6%9E%9C"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 从原理到工程的学习成果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%80%E7%BB%88MVP%E5%AE%9E%E7%8E%B0%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 最终MVP实现了什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E5%A5%97%E4%BA%A4%E4%BB%98%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 配套交付文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%9C%9F%E5%AE%9E%E8%AF%84%E6%B5%8B%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%BD%93%E5%89%8D%E5%B1%80%E9%99%90"><span class="toc-number">1.3.</span> <span class="toc-text">三、真实评测结果与当前局限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%88%E6%98%8E%E7%A1%AE%E8%AF%84%E6%B5%8B%E5%8F%A3%E5%BE%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 先明确评测口径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A6%96%E7%89%88%E5%9F%BA%E7%BA%BF"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 首版基线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%8C%E9%93%BE%E8%B7%AF%E8%A7%82%E5%AF%9F"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 双链路观察</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%9C%80%E8%A6%81%E7%BB%A7%E7%BB%AD%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 需要继续解决的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%A1%B9%E7%9B%AE%E7%9A%84AI%E8%BE%85%E5%8A%A9%E5%88%B6%E4%BD%9C%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.</span> <span class="toc-text">四、项目的AI辅助制作方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B7%B2%E9%87%87%E7%94%A8%E7%9A%84%E5%8D%8F%E4%BD%9C%E8%8A%82%E5%A5%8F"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 已采用的协作节奏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%BB%E5%8A%A1%E6%8B%86%E5%88%86%E4%B8%8E%E9%AA%8C%E6%94%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 任务拆分与验收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 可复用的每日任务提示词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E8%B0%83%E4%BC%98%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-number">1.4.4.</span> <span class="toc-text">4. 可复用的调优提示词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-AI%E4%B8%8E%E6%9C%AC%E4%BA%BA%E7%9A%84%E5%88%86%E5%B7%A5"><span class="toc-number">1.4.5.</span> <span class="toc-text">5. AI与本人的分工</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%90%8E%E7%BB%AD%E4%BC%98%E5%8C%96%E8%B7%AF%E7%BA%BF"><span class="toc-number">1.5.</span> <span class="toc-text">五、后续优化路线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BC%98%E5%85%88%E6%94%B9%E5%96%84%E6%A3%80%E7%B4%A2"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. 优先改善检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%94%B9%E5%96%84%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E7%94%A8"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. 改善生成与引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%A1%A5%E9%BD%90%E5%BE%AE%E8%B0%83%E5%AF%B9%E7%85%A7"><span class="toc-number">1.5.3.</span> <span class="toc-text">3. 补齐微调对照</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E8%B7%B5%E4%BD%93%E4%BC%9A%E4%B8%8E%E8%B5%84%E6%96%99%E4%BE%9D%E6%8D%AE"><span class="toc-number">1.6.</span> <span class="toc-text">六、实践体会与资料依据</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2024 - 2026 By LanMercer</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5</a></span></div><div class="footer_custom_text">用 ❤️ 记录每一次冒险</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5"></script><script src="/js/main.js?v=5.5.5"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
