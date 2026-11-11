@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>AI选择器制作与使用记录</title>
+      <link href="/2026/11/11/ai-selector-project/"/>
+      <url>/2026/11/11/ai-selector-project/</url>
+      
+        <content type="html"><![CDATA[<h1 id="AI选择器制作与使用记录"><a href="#AI选择器制作与使用记录" class="headerlink" title="AI选择器制作与使用记录"></a>AI选择器制作与使用记录</h1><p><strong>实践人：</strong> LanMercer<br><strong>实践项目：</strong> AI 选择器<br><strong>相关AI：</strong> Codex、DSH（项目记录中的协作窗口名称）<br><strong>技术实现：</strong> HTML、CSS、JavaScript<br><strong>上线平台：</strong> 魔搭创空间<br><strong>在线链接：</strong> <a href="https://modelscope.cn/studios/LanMercer/ai-choose">https://modelscope.cn/studios/LanMercer/ai-choose</a><br><strong>GitHub仓库：</strong> <a href="https://github.com/LanMercer/ai-choose">LanMercer&#x2F;ai-choose</a></p><hr><h2 id="一、项目介绍"><a href="#一、项目介绍" class="headerlink" title="一、项目介绍"></a>一、项目介绍</h2><p>面对越来越多的 AI 工具，我希望做一个能根据实际需求帮助用户选择工具的网页。用户通过问卷说明任务、设备、预算、期限和交付要求，再查看适合当前任务的工具建议。</p><p>目前支持写作与改稿、执行任务、做图、做视频、旁白与配音五类任务。不确定需求时，也可以从“我还没想好”开始，逐步明确需要完成的步骤。</p><hr><h2 id="二、制作过程与AI分工"><a href="#二、制作过程与AI分工" class="headerlink" title="二、制作过程与AI分工"></a>二、制作过程与AI分工</h2><p>项目按照“明确需求 → 设计规则 → 制作网页 → 体验修改 → 测试上线”的流程推进，并通过工程清单和项目文档记录进度。</p><ul><li><strong>Codex：</strong> 协助梳理问卷和推荐规则，编写静态网页，整理候选数据，执行测试与迭代。</li><li><strong>DSH：</strong> 协助复查推荐质量，修复条件判断问题，整理优化建议。</li><li><strong>我自己：</strong> 确定产品方向，亲自试用，提出修改意见，决定功能取舍并验收结果。</li></ul><p>网页使用预置候选库和 JavaScript 规则计算推荐，先检查设备、预算、地区和交付等条件，再从能力、质量、成本、速度、上手难度、语言和跨端能力七个维度比较候选。</p><hr><h2 id="三、使用方式"><a href="#三、使用方式" class="headerlink" title="三、使用方式"></a>三、使用方式</h2><ol><li>打开上方链接，点击“开始选择”。</li><li>选择任务类型；不确定时，选择“我还没想好”，跟随问题明确需求。</li><li>填写语言、设备、预算、期限和交付要求，查看符合条件及待核实的工具数量。</li><li>查看推荐理由、工具入口和第一步操作，也可以用雷达图比较候选。</li><li>根据需要修改单题、只改预算或重新选择任务，再打开推荐工具尝试。</li></ol><p>例如，给已有短视频补旁白，可以选择“旁白与配音”，再填写中文、手机、免费等条件。如果必须导出独立音频，也应明确交付要求，推荐结果会据此调整。</p><hr><h2 id="四、实践收获与后续完善"><a href="#四、实践收获与后续完善" class="headerlink" title="四、实践收获与后续完善"></a>四、实践收获与后续完善</h2><p>实际试用推动了候选数量实时显示、修改单题、区分免费与订阅等改进。场景测试也帮助发现并修复了中英混读等条件判断问题，部分浏览器复测仍待补齐。</p><p>这次实践让我认识到，工具推荐需要明确用户的具体任务和限制；AI 协作需要配合清单、文档和人工验收，才能持续修改并保留可复查的结果。</p><p><strong>使用提示：</strong> 当前部分价格、额度、耗时和评分属于演示数据，使用前请到工具官网核实实际权益与限制。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 实践总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+            <tag> Codex </tag>
+            
+            <tag> 项目实践 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>大模型算法项目成果与AI辅助制作方案：从本地部署到机器人领域RAG</title>
       <link href="/2026/09/13/llm-rag-project-ai-workflow/"/>
       <url>/2026/09/13/llm-rag-project-ai-workflow/</url>
